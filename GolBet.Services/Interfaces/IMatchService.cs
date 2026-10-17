@@ -17,4 +17,7 @@ public interface IMatchService
     Task UpdateAsync(MatchFormDto dto);
     Task DeactivateAsync(int id);
 
+    // NUEVO (ENTREGABLE 2)
+    Task<IEnumerable<MatchDto>> GetBoardAsync(MatchStatus? status = null, string? search = null);
+
 }

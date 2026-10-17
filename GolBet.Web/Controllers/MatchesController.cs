@@ -6,6 +6,7 @@ using GolBet.Services.Interfaces;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using System.Net.NetworkInformation;
 
 namespace GolBet.Web.Controllers;
 
@@ -22,12 +23,25 @@ public class MatchesController : Controller
 
     // GET /Matches            -> all matches
     // GET /Matches?status=Scheduled -> filtered board
-    public async Task<IActionResult> Index(MatchStatus? status)
+    // ESTA LINEA DE CODIGO SE REEMPLAZA POR LA SIGUIENTE PARA AÑADIR EL FILTRO DE BUSQUEDA
+
+    //      public async Task<IActionResult> Index(MatchStatus? status)
+    //      {
+
+    //      ViewBag.CurrentStatus = status;
+    //      var board = await _matchService.GetBoardAsync(status);
+    //      return View(board);
+    //      }
+
+    // NUEVA LINEA AGREGANDOLE LAS NUEVAS CONDICIONES (ENTREGABLE 2)
+    public async Task<IActionResult> Index(MatchStatus? status, string? search)
     {
         ViewBag.CurrentStatus = status;
-        var board = await _matchService.GetBoardAsync(status);
+        ViewBag.CurrentSearch = search;
+        var board = await _matchService.GetBoardAsync(status, search);
         return View(board);
     }
+
 
     // GET /Matches/Detail/3
     public async Task<IActionResult> Detail(int id)
@@ -124,4 +138,5 @@ public class MatchesController : Controller
         var teams = await _teamService.GetAllAsync();
         ViewBag.Teams = new SelectList(teams, "Id", "Name");
     }
+
 }

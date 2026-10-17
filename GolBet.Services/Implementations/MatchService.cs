@@ -78,4 +78,12 @@ public class MatchService : IMatchService
                 "La fecha del partido debe ser futura.");
     }
 
+
+    // NUEVO (ENTREGABLE 2)
+    public async Task<IEnumerable<MatchDto>> GetBoardAsync(MatchStatus? status = null, string? search = null)
+    {
+        var matches = await _matchRepository.GetAllWithTeamsAsync(status, search);
+        return _mapper.Map<IEnumerable<MatchDto>>(matches);
+    }
+
 }

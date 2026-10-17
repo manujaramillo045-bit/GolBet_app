@@ -7,38 +7,110 @@
 }
 
 
+@* @{ 
+//se reemplaza por el siguiente código para mostrar los botones de filtro de estado de partido
+
+ //   var current = (MatchStatus?)ViewBag.CurrentStatus;
+//      }
+//<div class="d-flex gap-2 flex-wrap mb-4">
+   // <a asp-action="Index"
+     //  class="btn btn-sm @(current is null ? "btn-success" : "btn-outline-success")">
+       // Todos
+    //</a>
+   // <a asp-action="Index" asp-route-status="@MatchStatus.Scheduled"
+    //   class="btn btn-sm @(current == MatchStatus.Scheduled ? "btn-success" : "btn-outline-success")">
+       // Programados
+   // </a>
+   // <a asp-action="Index" asp-route-status="@MatchStatus.InProgress"
+     //  class="btn btn-sm @(current == MatchStatus.InProgress ? "btn-success" : "btn-outline-success")">
+     //   En juego
+   // </a>
+   // <a asp-action="Index" asp-route-status="@MatchStatus.Finished"
+    //   class="btn btn-sm @(current == MatchStatus.Finished ? "btn-success" : "btn-outline-success")">
+    //    Finalizados
+   // </a>
+// </div> *@
+
+
+@* NUEVO CÓDIGO PARA EL FILTRO DE ESTADO DE PARTIDO (ENTREGABLE 2) *@
+
 @{
     var current = (MatchStatus?)ViewBag.CurrentStatus;
+    var search = ViewBag.CurrentSearch as string;
 }
+
+<form method="get" asp-action="Index" class="d-flex gap-2 mb-3">
+    @if (current.HasValue)
+    {
+        <input type="hidden" name="status" value="@current" />
+    }
+    <input type="search" name="search" value="@search" class="form-control"
+           placeholder="Buscar equipo..." />
+    <button type="submit" class="btn btn-success">Buscar</button>
+</form>
+
+
+@* BOTONES DE FILTRO (ENTREGABLE 2) *@
+
 <div class="d-flex gap-2 flex-wrap mb-4">
-    <a asp-action="Index"
+    <a asp-action="Index" asp-route-search="@search" 
        class="btn btn-sm @(current is null ? "btn-success" : "btn-outline-success")">
         Todos
     </a>
-    <a asp-action="Index" asp-route-status="@MatchStatus.Scheduled"
+    <a asp-action="Index" asp-route-status="@MatchStatus.Scheduled" asp-route-search="@search" 
        class="btn btn-sm @(current == MatchStatus.Scheduled ? "btn-success" : "btn-outline-success")">
         Programados
     </a>
-    <a asp-action="Index" asp-route-status="@MatchStatus.InProgress"
+    <a asp-action="Index" asp-route-status="@MatchStatus.InProgress" asp-route-search="@search" 
        class="btn btn-sm @(current == MatchStatus.InProgress ? "btn-success" : "btn-outline-success")">
         En juego
     </a>
-    <a asp-action="Index" asp-route-status="@MatchStatus.Finished"
+    <a asp-action="Index" asp-route-status="@MatchStatus.Finished" asp-route-search="@search" 
        class="btn btn-sm @(current == MatchStatus.Finished ? "btn-success" : "btn-outline-success")">
         Finalizados
     </a>
 </div>
 
+
 <div class="d-flex justify-content-between align-items-center mb-4">
     <h2>⚽ Cartelera de partidos</h2>
    @if (User.IsInRole("Admin")) 
-
 { 
 
     <a asp-action="Create" class="btn btn-success">+ Nuevo partido</a> 
 
 } 
 </div>
+
+
+
+
+@* ESTADO VACIO Y ENVOLVER TARJETAS (ENTREGABLE 2) *@
+
+
+@if (!Model.Any())                         
+{
+    <div class="text-center py-5">
+        <p class="lead">
+            @(string.IsNullOrWhiteSpace(search)
+                ? "No hay partidos para mostrar."
+                : $"No hay partidos para “{search}”")
+        </p>
+        <a asp-action="Index" class="btn btn-success">Volver a la cartelera de partidos</a>
+    </div>
+}
+else
+{
+    <div class="row row-cols-1 row-cols-md-2 row-cols-xl-3 g-4">
+        @foreach (var match in Model)
+        {
+            @* TODAS las tarjetas exactamente como están, sin tocar nada  *@
+        }
+    </div>
+}
+
+
+
 
 <div class="row row-cols-1 row-cols-md-2 row-cols-xl-3 g-4">
     @foreach (var match in Model)
