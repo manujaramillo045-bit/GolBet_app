@@ -20,3 +20,206 @@ html {
 body {
   margin-bottom: 60px;
 }
+
+/* ===== GolBet · tema rosa pastel ===== */
+:root {
+    --gb-pink-50: #FFF7FA;
+    --gb-pink-100: #FFE8F0;
+    --gb-pink-200: #FFD1E3;
+    --gb-pink-300: #F9B4CF;
+    --gb-rose: #D6457E;
+    --gb-rose-dark: #B8336A;
+    --gb-plum: #5B2A44;
+    --gb-lilac: #E9D8FD;
+    --bs-success: #D6457E;
+    --bs-success-rgb: 214, 69, 126;
+    --bs-body-font-family: 'Quicksand', 'Segoe UI', sans-serif;
+}
+
+body {
+    background: var(--gb-pink-50);
+    color: var(--gb-plum);
+    font-weight: 500;
+}
+
+/* Barra superior */
+.navbar.bg-success {
+    background: linear-gradient(90deg, var(--gb-pink-200), var(--gb-pink-300)) !important;
+    border-bottom: 0 !important;
+    box-shadow: 0 4px 14px rgba(214, 69, 126, .15);
+}
+
+.navbar .navbar-brand {
+    font-family: 'Pacifico', cursive;
+    font-size: 1.6rem;
+    color: var(--gb-rose-dark) !important;
+}
+
+.navbar .nav-link {
+    color: var(--gb-plum) !important;
+    font-weight: 600;
+}
+
+    .navbar .nav-link:hover {
+        color: var(--gb-rose) !important;
+    }
+
+.navbar-toggler {
+    border-color: var(--gb-rose);
+}
+
+/* Títulos */
+h1.display-4, h2 {
+    font-family: 'Pacifico', cursive;
+    color: var(--gb-rose-dark);
+    font-weight: 400;
+}
+
+/* Botones redondeados */
+.btn {
+    border-radius: 999px;
+    font-weight: 600;
+}
+
+.btn-success {
+    --bs-btn-bg: var(--gb-rose);
+    --bs-btn-border-color: var(--gb-rose);
+    --bs-btn-hover-bg: var(--gb-rose-dark);
+    --bs-btn-hover-border-color: var(--gb-rose-dark);
+    --bs-btn-active-bg: var(--gb-rose-dark);
+    --bs-btn-active-border-color: var(--gb-rose-dark);
+    --bs-btn-disabled-bg: var(--gb-pink-300);
+    --bs-btn-disabled-border-color: var(--gb-pink-300);
+}
+
+.btn-outline-success {
+    --bs-btn-color: var(--gb-rose);
+    --bs-btn-border-color: var(--gb-rose);
+    --bs-btn-hover-bg: var(--gb-rose);
+    --bs-btn-hover-border-color: var(--gb-rose);
+    --bs-btn-active-bg: var(--gb-rose-dark);
+    --bs-btn-active-border-color: var(--gb-rose-dark);
+}
+
+.btn-outline-secondary {
+    --bs-btn-color: var(--gb-plum);
+    --bs-btn-border-color: var(--gb-pink-300);
+    --bs-btn-hover-bg: var(--gb-pink-200);
+    --bs-btn-hover-color: var(--gb-plum);
+    --bs-btn-hover-border-color: var(--gb-pink-300);
+}
+
+/* Tarjetas de partidos */
+.card {
+    border: 1px solid var(--gb-pink-200);
+    border-radius: 22px;
+    overflow: hidden;
+    box-shadow: 0 8px 22px rgba(214, 69, 126, .12) !important;
+}
+
+.card-header, .card-footer {
+    background: var(--gb-pink-100);
+    border-color: var(--gb-pink-200);
+}
+
+.card .border.rounded {
+    border-color: var(--gb-pink-200) !important;
+    border-radius: 14px !important;
+    background: #fff;
+}
+
+.text-muted {
+    color: #9b6b82 !important;
+}
+
+/* Estados */
+.badge {
+    border-radius: 999px;
+    padding: .45em .8em;
+}
+
+    .badge.bg-primary {
+        background-color: var(--gb-lilac) !important;
+        color: #5a3d8a !important;
+    }
+
+    .badge.bg-warning {
+        background-color: #FFE9A8 !important;
+        color: #7a5a00 !important;
+    }
+
+    .badge.bg-secondary {
+        background-color: #EADCE3 !important;
+        color: var(--gb-plum) !important;
+    }
+
+/* Formularios */
+.form-control, .form-select {
+    border-radius: 14px;
+    border-color: var(--gb-pink-300);
+}
+
+    .form-control:focus, .form-select:focus {
+        border-color: var(--gb-rose);
+        box-shadow: 0 0 0 .25rem rgba(214, 69, 126, .18);
+    }
+
+/* Pie de página */
+.footer {
+    background: var(--gb-pink-100);
+    border-top: 1px solid var(--gb-pink-200) !important;
+}
+
+/* ===== Botones rosa (fuerza el color) ===== */
+.btn-success,
+.btn-success:focus {
+    background-color: #D6457E !important;
+    border-color: #D6457E !important;
+    color: #fff !important;
+}
+
+    .btn-success:hover,
+    .btn-success:active,
+    .btn-check:checked + .btn-success {
+        background-color: #B8336A !important;
+        border-color: #B8336A !important;
+        color: #fff !important;
+    }
+
+    .btn-success:disabled,
+    .btn-success.disabled {
+        background-color: #F9B4CF !important;
+        border-color: #F9B4CF !important;
+        color: #fff !important;
+        opacity: 1;
+    }
+
+    .btn-success:focus,
+    .btn-success:focus-visible {
+        box-shadow: 0 0 0 .25rem rgba(214, 69, 126, .30) !important;
+    }
+
+.btn-outline-success {
+    background-color: transparent !important;
+    border-color: #D6457E !important;
+    color: #D6457E !important;
+}
+
+    .btn-outline-success:hover,
+    .btn-outline-success:active,
+    .btn-outline-success:focus {
+        background-color: #D6457E !important;
+        border-color: #D6457E !important;
+        color: #fff !important;
+    }
+
+    .btn-outline-success:focus {
+        box-shadow: 0 0 0 .25rem rgba(214, 69, 126, .30) !important;
+    }
+
+/* Mensajes de éxito (✅) también en rosa suave */
+.alert-success {
+    background-color: #FFE8F0;
+    border-color: #FFD1E3;
+    color: #5B2A44;
+}
