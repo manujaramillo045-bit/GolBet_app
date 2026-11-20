@@ -20,4 +20,7 @@ public interface IMatchService
     // NUEVO (ENTREGABLE 2)
     Task<IEnumerable<MatchDto>> GetBoardAsync(MatchStatus? status = null, string? search = null); // Overloaded method with search parameter
 
+    Task StartMatchAsync(int id);
+    Task<ResolutionSummaryDto> CloseMatchAsync(MatchResultFormDto dto);
+
 }
