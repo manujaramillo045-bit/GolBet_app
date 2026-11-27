@@ -7,6 +7,7 @@ using GolBet.Services.Interfaces;
 using GolBet.Services.Mapping;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using Serilog;
 using System.Globalization;
 
 var culture = new CultureInfo("es-CO");
@@ -19,6 +20,10 @@ CultureInfo.DefaultThreadCurrentCulture = culture;
 CultureInfo.DefaultThreadCurrentUICulture = culture;
 
 var builder = WebApplication.CreateBuilder(args);
+
+// Serilog replaces the default logger; configuration comes from appsettings.json
+builder.Host.UseSerilog((context, config) =>
+    config.ReadFrom.Configuration(context.Configuration));
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
@@ -72,15 +77,24 @@ using (var scope = app.Services.CreateScope())
 }
 
 // Configure the HTTP request pipeline.
+
+// Unhandled exceptions (500): friendly page in production,
+// full yellow stack trace while developing
 if (!app.Environment.IsDevelopment())
 {
-    app.UseExceptionHandler("/Home/Error");
+    app.UseExceptionHandler("/Error/General");
     // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
     app.UseHsts();
 }
 
+// Status codes without a body (404 and friends): re-execute
+// the pipeline against our ErrorController
+app.UseStatusCodePagesWithReExecute("/Error/{0}");
+
 app.UseHttpsRedirection();
 app.UseStaticFiles();
+
+app.UseSerilogRequestLogging();   // one clean line per request
 
 app.UseRouting();
 
